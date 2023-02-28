@@ -5,11 +5,10 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var cors = require('cors')
 
-
 var usersRouter = require('./routes/users');
 var projectsRouter = require('./routes/projects');
-var tasksRouter = require('./routes/tasks')
-
+var tasksRouter = require('./routes/tasks');
+var authRouter = require('./routes/auth')
 var app = express();
 
 app.set('trust proxy', 1);
@@ -31,6 +30,7 @@ app.use(
 app.use('/users', usersRouter);
 app.use('/projects', projectsRouter)
 app.use('/tasks', tasksRouter)
+app.use('/auth', authRouter)
 
 mongoose
   .connect(process.env.MONGODB_URI)
