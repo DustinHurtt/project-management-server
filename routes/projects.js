@@ -15,6 +15,7 @@ router.post("/", (req, res, next) => {
 
 router.get('/', (req, res, next) => {
     Project.find()
+    .sort({createdAt: -1})
     .populate('tasks')
     .then(allProjects => res.json(allProjects))
     .catch(err => res.json(err));
